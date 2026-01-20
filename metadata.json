@@ -1,0 +1,7 @@
+{
+  "name": "Copy of TechSoft - Innovative Digital Solutions",
+  "description": "A modern, professional website for TechSoft, a technology and software brand providing scalable and reliable digital solutions including cloud infrastructure, custom development, and cybersecurity.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
