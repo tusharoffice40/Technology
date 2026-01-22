@@ -16,12 +16,18 @@
             --border: #e2e8f0;
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --accent: #f59e0b;
+            --code-bg: #1e293b;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -35,22 +41,28 @@
         .header {
             background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 100%);
             color: var(--white);
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             letter-spacing: -0.025em;
         }
 
         .header p {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
         }
 
         .nav {
@@ -66,13 +78,13 @@
 
         .nav a {
             color: var(--text-main);
-            padding: 0.5rem 1.25rem;
+            padding: 0.5rem 1rem;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: all 0.2s ease;
             border-radius: 0.375rem;
-            margin: 0 0.25rem;
+            margin: 0 0.15rem;
         }
 
         .nav a:hover {
@@ -87,7 +99,7 @@
             margin: 3rem auto;
             display: flex;
             flex-direction: column;
-            gap: 3rem;
+            gap: 4rem;
         }
 
         /* Section Styling as Cards */
@@ -117,6 +129,13 @@
             background: var(--border);
         }
 
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
         p {
             margin-bottom: 1rem;
             color: var(--text-light);
@@ -130,45 +149,92 @@
             margin: 1.5rem 0;
             box-shadow: var(--shadow-lg);
             object-fit: cover;
-            max-height: 400px;
+            max-height: 450px;
         }
 
-        .status-box {
-            background-color: #f0fdf4;
-            padding: 1.5rem;
-            border: 1px solid #bbf7d0;
-            margin-top: 2rem;
-            border-radius: 0.75rem;
-            text-align: center;
-        }
-
-        /* Service Items */
-        #services .section-content {
+        /* Service & Feature Items */
+        .grid-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
 
-        .service-item {
+        .card-item {
             background-color: var(--bg-light);
             border: 1px solid var(--border);
-            padding: 1.5rem;
+            padding: 1.75rem;
             border-radius: 0.75rem;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .service-item:hover {
+        .card-item:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
             border-color: var(--primary);
         }
 
-        .service-item b {
+        .card-item b {
             display: block;
             font-size: 1.1rem;
             color: var(--secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.25rem;
+            text-align: left;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: var(--secondary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--bg-light);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: var(--bg-light);
+        }
+
+        .faq-answer p {
+            padding: 0 1.25rem 1.25rem;
+            margin: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
         }
 
         /* Pricing Table */
@@ -186,7 +252,7 @@
         }
 
         .pricing-table th, .pricing-table td {
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             text-align: left;
             border-bottom: 1px solid var(--border);
         }
@@ -200,12 +266,42 @@
             letter-spacing: 0.05em;
         }
 
-        .pricing-table tr:last-child td {
-            border-bottom: none;
+        /* Blueprint Layout */
+        .blueprint-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
         }
 
-        .pricing-table tr:hover td {
-            background-color: #f8fafc;
+        .blueprint-spec {
+            font-family: 'Monaco', 'Consolas', monospace;
+            background-color: var(--code-bg);
+            color: #94a3b8;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .blueprint-spec h4 {
+            color: #38bdf8;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.5rem;
+        }
+
+        .blueprint-spec ul {
+            list-style: none;
+        }
+
+        .blueprint-spec li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .blueprint-spec b {
+            color: #f1f5f9;
         }
 
         /* Buttons */
@@ -221,6 +317,14 @@
             border-radius: 0.5rem;
             transition: all 0.2s ease;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
         }
 
         .button:hover {
@@ -229,19 +333,23 @@
             box-shadow: var(--shadow);
         }
 
-        .button:active {
-            transform: translateY(0);
+        .button.secondary:hover {
+            background-color: rgba(255,255,255,0.1);
         }
 
         /* Form Styling */
-        .contact-form {
+        .form-container {
             background-color: var(--bg-light);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 0.75rem;
             border: 1px solid var(--border);
         }
 
-        .contact-form label {
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -249,10 +357,9 @@
             color: var(--secondary);
         }
 
-        .contact-form input, .contact-form textarea {
+        .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1.25rem;
+            padding: 0.85rem;
             border: 1px solid var(--border);
             border-radius: 0.375rem;
             font-family: inherit;
@@ -260,21 +367,68 @@
             transition: border-color 0.2s ease;
         }
 
-        .contact-form input:focus, .contact-form textarea:focus {
+        .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        /* Interaction Elements */
-        #secret-text {
-            display: none;
-            background-color: #fffbeb;
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
             padding: 1.5rem;
-            border: 1px solid #fde68a;
-            margin-top: 1.5rem;
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary);
             border-radius: 0.5rem;
-            color: #92400e;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            color: var(--white);
+            justify-content: center;
+        }
+
+        .newsletter-section h2::after {
+            display: none;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 2rem auto 0;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border: none;
         }
 
         /* Footer */
@@ -292,18 +446,13 @@
             color: var(--white);
         }
 
-        .footer b {
-            opacity: 1;
-        }
-
         /* Mobile Responsive adjustments */
         @media (max-width: 768px) {
-            .header { padding: 3rem 1rem; }
-            .header h1 { font-size: 2rem; }
-            .wrapper { margin: 1.5rem auto; gap: 1.5rem; }
-            .section { padding: 1.5rem; }
-            .nav { display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-            #services .section-content { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2.25rem; }
+            .hero-btns { flex-direction: column; align-items: stretch; }
+            .nav { display: flex; overflow-x: auto; padding: 0.5rem; }
+            .nav a { flex-shrink: 0; font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+            .newsletter-form { flex-direction: column; }
         }
     </style>
 </head>
@@ -311,95 +460,156 @@
 
     <div class="header">
         <h1>TechSoft</h1>
-        <p>Reliable Digital Solutions & Software Engineering since 2014</p>
+        <p>Expert Digital Engineering & Scalable Infrastructure for Tomorrow's Leaders</p>
+        <div class="hero-btns">
+            <a href="#contact" class="button">Request a Quote</a>
+            <a href="#blueprint" class="button secondary">Technical Blueprint</a>
+        </div>
     </div>
 
     <div class="nav">
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
+        <a href="#blueprint">Blueprint</a>
     </div>
 
     <div class="wrapper">
         
         <div id="home" class="section">
-            <h2>Welcome to TechSoft</h2>
-            <p>TechSoft is a premier technology partner specializing in high-performance digital solutions. We empower modern enterprises through cutting-edge cloud infrastructure, custom software development, and robust security protocols.</p>
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1000" class="hero-image" alt="Modern Tech Workplace">
+            <h2>Pioneering the Future</h2>
+            <p>At TechSoft, we believe in the power of software to transform industries. Our teams are composed of senior architects and security experts who have built systems processing billions of transactions annually.</p>
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200" class="hero-image" alt="Tech Environment">
             
-            <div class="status-box">
-                <p><b>Real-time Service Monitoring:</b> Check our current system operational status.</p>
-                <button class="button" id="status-btn">Check Server Status</button>
-            </div>
-        </div>
-
-        <div id="about" class="section">
-            <h2>About Our Vision</h2>
-            <p>Founded by a passionate team of engineers, we've dedicated a decade to solving complex business challenges through elegant code and scalable architecture. Our approach combines technical excellence with a deep understanding of business requirements.</p>
-            
-            <button class="button" id="show-secret-btn">View Our Special Projects</button>
-            <div id="secret-text">
-                <p><b>Innovations Lab:</b> We are currently exploring autonomous coding assistants and neural-driven software optimization to stay ahead of the curve.</p>
-            </div>
-
-            <div style="margin-top: 2rem;">
-                <p><b>Our Mission:</b> To deliver transformative software that sets new standards for reliability and performance.</p>
-                <p><b>Our Vision:</b> Leading the digital evolution as the most trusted partner for innovative software solutions.</p>
+            <div style="background-color: #f0fdf4; padding: 1.5rem; border: 1px solid #bbf7d0; border-radius: 0.75rem; margin-top: 2rem; text-align: center;">
+                <p style="margin-bottom: 0.5rem;"><b>Operational Integrity:</b> We maintain a 99.99% uptime SLA for all managed partners.</p>
+                <button class="button" id="status-btn">Live Infrastructure Status</button>
             </div>
         </div>
 
         <div id="services" class="section">
-            <h2>Core Services</h2>
-            <p>Explore our comprehensive suite of technology services designed to drive growth and efficiency.</p>
-            <div class="section-content">
-                <div class="service-item">
-                    <b>Custom Software Development</b>
-                    <p>Tailored applications built with modern frameworks to meet your specific business logic and user needs.</p>
+            <h2>Our Core Solutions</h2>
+            <p>Strategic services engineered to scale your business operations globally.</p>
+            <div class="grid-layout">
+                <div class="card-item">
+                    <div class="icon-box">SD</div>
+                    <b>Software Development</b>
+                    <p>End-to-end development of robust web, mobile, and desktop applications.</p>
                 </div>
-                <div class="service-item">
-                    <b>Cloud Strategy & Infrastructure</b>
-                    <p>Scalable cloud solutions that optimize performance, reduce latency, and ensure business continuity.</p>
+                <div class="card-item">
+                    <div class="icon-box">CS</div>
+                    <b>Cloud Strategy</b>
+                    <p>Modernize your stack with AWS, Azure, or GCP optimized configurations.</p>
                 </div>
-                <div class="service-item">
-                    <b>Cybersecurity & Compliance</b>
-                    <p>Advanced threat detection and data protection to keep your digital assets secure and compliant.</p>
+                <div class="card-item">
+                    <div class="icon-box">SEC</div>
+                    <b>Cyber Security</b>
+                    <p>Proactive monitoring and hardening of your critical business data.</p>
                 </div>
-                <div class="service-item">
-                    <b>Enterprise Web Architecture</b>
-                    <p>High-traffic web platforms engineered for speed, accessibility, and exceptional user experience.</p>
+                <div class="card-item">
+                    <div class="icon-box">AI</div>
+                    <b>AI Integration</b>
+                    <p>Harness machine learning to automate workflows and gain data insights.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="features" class="section">
+            <h2>Why Choose TechSoft?</h2>
+            <p>We combine agility with institutional-grade reliability.</p>
+            <div class="grid-layout">
+                <div class="card-item">
+                    <b>Agile Delivery</b>
+                    <p>Bi-weekly release cycles ensuring rapid feedback and progress.</p>
+                </div>
+                <div class="card-item">
+                    <b>Global Support</b>
+                    <p>Round-the-clock monitoring and technical assistance from our global NOC.</p>
+                </div>
+                <div class="card-item">
+                    <b>Security First</b>
+                    <p>SOC2 and GDPR compliant processes built into every line of code.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="section">
+            <h2>Our Visionary Path</h2>
+            <p>Since 2014, TechSoft has transitioned from a small consultancy to a global technology powerhouse. Our core philosophy remains: Build for Scale, Code for Reliability.</p>
+            
+            <button class="button" id="show-secret-btn">Explore Research Lab</button>
+            <div id="secret-text">
+                <p><b>Research Focus:</b> Currently developing proprietary quantum-resistant encryption protocols for financial data transit.</p>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"TechSoft revamped our entire cloud architecture. Deployment times dropped by 60%."</p>
+                        <p class="testimonial-author">— CTO, Fintech Global</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The most professional security audit we've ever experienced. Highly recommended."</p>
+                        <p class="testimonial-author">— Lead Engineer, HealthScale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="faq" class="section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">What is your typical project timeline? <span>+</span></button>
+                    <div class="faq-answer">
+                        <p>Timelines vary based on complexity. MVP development usually takes 8-12 weeks, while enterprise integrations can span 6+ months.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do you offer ongoing maintenance? <span>+</span></button>
+                    <div class="faq-answer">
+                        <p>Yes, we offer flexible Managed Operations plans that include 24/7 monitoring, security patches, and periodic feature updates.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Are you compliant with data privacy laws? <span>+</span></button>
+                    <div class="faq-answer">
+                        <p>Absolutely. We are fully GDPR, HIPAA, and SOC2 compliant, ensuring all development meets international safety standards.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div id="pricing" class="section">
-            <h2>Scalable Pricing</h2>
-            <p>Transparent pricing models tailored to different organizational needs and project scales.</p>
+            <h2>Investment Tiers</h2>
             <div class="pricing-table-container">
                 <table class="pricing-table">
                     <thead>
                         <tr>
-                            <th>Package Tier</th>
-                            <th>Starting Price</th>
-                            <th>Included Features</th>
+                            <th>Service Tier</th>
+                            <th>Starting Investment</th>
+                            <th>Key Deliverables</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Startup Essential</td>
-                            <td>$2,500</td>
-                            <td>Custom MVP, Basic Hosting, 30-day Support</td>
+                            <td><b>Essential</b></td>
+                            <td>$5,000</td>
+                            <td>Project Roadmap, UI/UX Design, Base Application</td>
                         </tr>
                         <tr>
-                            <td>Business Growth</td>
-                            <td>$10,000</td>
-                            <td>Full Application, Cloud Sync, Priority Support</td>
+                            <td><b>Professional</b></td>
+                            <td>$15,000</td>
+                            <td>Full Stack, Cloud Deployment, Security Audit</td>
                         </tr>
                         <tr>
-                            <td>Managed Operations</td>
-                            <td>$2,000/mo</td>
-                            <td>Continuous Integration, security audits, 24/7 Monitoring</td>
+                            <td><b>Enterprise</b></td>
+                            <td>Custom</td>
+                            <td>High-Availability Architecture, Dedicated Team, 24/7 SLA</td>
                         </tr>
                     </tbody>
                 </table>
@@ -407,27 +617,84 @@
         </div>
 
         <div id="contact" class="section">
-            <h2>Get in Touch</h2>
-            <p>Ready to start your next project? Fill out the form below and our strategy team will reach out within 24 hours.</p>
-            <form class="contact-form" id="my-contact-form">
-                <label for="user-name">Full Name</label>
-                <input type="text" id="user-name" name="name" placeholder="e.g. John Doe" required>
-                
-                <label for="user-email">Work Email</label>
-                <input type="email" id="user-email" name="email" placeholder="e.g. john@company.com" required>
-                
-                <label for="user-msg">Project Description</label>
-                <textarea id="user-msg" rows="5" placeholder="Tell us about your technical goals..." required></textarea>
-                
-                <button type="submit" class="button">Submit Inquiry</button>
+            <h2>Consult With Our Experts</h2>
+            <p>Start your digital transformation journey today. Our strategy team is standing by.</p>
+            <div class="form-container">
+                <form id="my-contact-form">
+                    <div class="form-group">
+                        <label for="user-name">Full Name</label>
+                        <input type="text" id="user-name" name="name" placeholder="Johnathan Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-email">Corporate Email</label>
+                        <input type="email" id="user-email" name="email" placeholder="jsmith@enterprise.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-msg">Project Summary</label>
+                        <textarea id="user-msg" rows="4" placeholder="Briefly describe your technical needs..." required></textarea>
+                    </div>
+                    <button type="submit" class="button" style="width: 100%;">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="blueprint" class="section">
+            <h2>Technical Blueprint</h2>
+            <p>Full-scale architectural specification of the current platform. Transparency is our core value.</p>
+            
+            <div class="blueprint-grid">
+                <div class="blueprint-spec">
+                    <h4>Design Tokens</h4>
+                    <ul>
+                        <li><span>Primary:</span> <b>#2563eb</b></li>
+                        <li><span>Secondary:</span> <b>#0f172a</b></li>
+                        <li><span>Radius:</span> <b>1.0rem</b></li>
+                        <li><span>Font:</span> <b>Inter</b></li>
+                        <li><span>Grid:</span> <b>8px base</b></li>
+                    </ul>
+                </div>
+                <div class="blueprint-spec">
+                    <h4>Architecture</h4>
+                    <ul>
+                        <li><span>Stack:</span> <b>HTML/CSS/TS</b></li>
+                        <li><span>Pattern:</span> <b>Vanilla SPA</b></li>
+                        <li><span>Layout:</span> <b>Flex/Grid</b></li>
+                        <li><span>A11y:</span> <b>WCAG AA</b></li>
+                        <li><span>Speed:</span> <b>< 100ms LCP</b></li>
+                    </ul>
+                </div>
+                <div class="blueprint-spec">
+                    <h4>System Logic</h4>
+                    <ul>
+                        <li><span>Events:</span> <b>Reactive DOM</b></li>
+                        <li><span>Status:</span> <b>Simulated NOC</b></li>
+                        <li><span>FAQ:</span> <b>Height-Anim</b></li>
+                        <li><span>Forms:</span> <b>Safe Submit</b></li>
+                        <li><span>Lab:</span> <b>Conditional</b></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 0.75rem; border-left: 4px solid var(--primary);">
+                <h3>Architectural Vision</h3>
+                <p>The TechSoft platform is built on a "Dependency-Free" architectural model, ensuring zero technical debt from third-party frameworks and 100% control over the DOM lifecycle. This approach provides military-grade performance and unmatched stability.</p>
+            </div>
+        </div>
+
+        <div class="newsletter-section">
+            <h2>Join Our Tech Newsletter</h2>
+            <p>Weekly insights on cloud architecture, cybersecurity trends, and AI innovations.</p>
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" placeholder="Your work email..." required>
+                <button type="submit" class="button">Subscribe</button>
             </form>
         </div>
 
     </div>
 
     <div class="footer">
-        <p><b>&copy; 2024 TechSoft Solutions Inc.</b></p>
-        <p>Built with performance and accessibility in mind.</p>
+        <p><b>&copy; 2024 TechSoft Solutions Inc.</b> | Privacy Policy | Terms of Service</p>
+        <p>Innovation and Excellence in Every Line of Code.</p>
     </div>
 
     <script src="index.tsx" type="module"></script>
